@@ -48,7 +48,7 @@
         }
     %>
 
-    <form action="LoginServlet" method="post">
+    <form action="login" method="post">
         <label>Username:</label>
         <input type="text" name="username" required>
 
