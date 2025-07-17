@@ -50,7 +50,7 @@
 
 <div class="menu">
     <h2>Welcome, <%= user.getUsername() %></h2>
-    <a href="AddCustomer.jsp">Add New Customer</a>
+    <a href="add-new-customer.jsp">Add New Customer</a>
     <a href="EditCustomer.jsp">Edit Customer</a>
     <a href="ManageItems.jsp">Manage Items</a>
     <a href="DisplayAccount.jsp">Display Account Details</a>
