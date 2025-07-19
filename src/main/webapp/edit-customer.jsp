@@ -83,7 +83,7 @@
 
 <div class="form-container">
   <h2>Edit Customer</h2>
-  <form action="EditCustomerServlet" method="post">
+  <form action="CustomerServlet" method="post">
     <input type="hidden" name="accountNumber" value="<%= accountNumber %>">
 
     <label for="name">Name:</label>

@@ -25,19 +25,40 @@ public class CustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String accountNumberStr = request.getParameter("accountNumber");
         String name = request.getParameter("name");
         String address = request.getParameter("address");
         String telephone = request.getParameter("telephone");
 
-        Customer customer = new Customer(name, address, telephone);
-        boolean success = customerService.registerCustomer(customer);
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setAddress(address);
+        customer.setTelephone(telephone);
+
+        boolean success;
+
+        if (accountNumberStr == null || accountNumberStr.isEmpty()) {
+            // ADD mode
+            success = customerService.registerCustomer(customer);
+        } else {
+            // EDIT mode
+            try {
+                int accountNumber = Integer.parseInt(accountNumberStr);
+                customer.setAccountNumber(accountNumber);
+                success = customerService.updateCustomer(customer);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                success = false;
+            }
+        }
 
         if (success) {
-            response.sendRedirect("index.jsp"); // Create a success page
+            response.sendRedirect("main-menu.jsp");
         } else {
-            response.sendRedirect("error.jsp"); // Create an error page
+            response.sendRedirect("error.jsp");
         }
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -45,5 +66,4 @@ public class CustomerServlet extends HttpServlet {
         request.setAttribute("customers", customerList);
         request.getRequestDispatcher("show-customer.jsp").forward(request, response);
     }
-
 }
