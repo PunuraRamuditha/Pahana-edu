@@ -52,7 +52,7 @@
 
 <div class="form-container">
     <h2>Add New Customer</h2>
-    <form action="AddNewCustomerServlet" method="post">
+    <form action="CustomerServlet" method="post">
     <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
