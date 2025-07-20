@@ -41,6 +41,7 @@ public class CustomerDAO {
             e.printStackTrace();
         }
         return false;
+
     }
     public List<Customer> getAllCustomers() {
         List<Customer> customers = new ArrayList<>();
