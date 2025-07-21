@@ -37,7 +37,8 @@ public class ItemDAO {
             stmt.setString(1, item.getItem_name());
             stmt.setString(2, item.getItem_description());
             stmt.setString(3, item.getUnit_price());
-            stmt.setString(3, item.getStock_quantity());
+            stmt.setString(4, item.getStock_quantity());
+            stmt.setInt(5, item.getItem_id());
 
             return stmt.executeUpdate() > 0;
         } catch (Exception e) {

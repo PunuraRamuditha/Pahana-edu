@@ -51,7 +51,7 @@ public class ItemServlet extends HttpServlet  {
         }
 
         if (success) {
-            response.sendRedirect("main-menu.jsp");
+            response.sendRedirect("ItemServlet");
         } else {
             response.sendRedirect("error.jsp");
         }

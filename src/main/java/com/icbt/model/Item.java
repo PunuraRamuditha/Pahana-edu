@@ -26,7 +26,7 @@ public class Item {
     public void setItem_name(String item_name) { this.item_name = item_name; }
 
     public String getItem_description() { return item_description; }
-    public void setItem_description(String itemDescription) { this.item_description = item_description; }
+    public void setItem_description(String item_description) { this.item_description = item_description; }
 
     public String getUnit_price() { return unit_price; }
     public void setUnit_price(String unit_price) { this.unit_price = unit_price; }
