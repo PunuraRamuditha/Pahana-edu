@@ -1,17 +1,52 @@
 package com.icbt.model;
 
 public class BillItem {
+    private int billItemId;
     private int billId;
-    private String itemCode;
+    private int itemId;
     private int quantity;
+    private double unitPrice;
+    private double subtotal;
 
-    // Getters and setters
-    public int getBillId() { return billId; }
-    public void setBillId(int billId) { this.billId = billId; }
+    public int getBillItemId() {
+        return billItemId;
+    }
+    public void setBillItemId(int billItemId) {
+        this.billItemId = billItemId;
+    }
 
-    public String getItemCode() { return itemCode; }
-    public void setItemCode(String itemCode) { this.itemCode = itemCode; }
+    public int getBillId() {
+        return billId;
+    }
+    public void setBillId(int billId) {
+        this.billId = billId;
+    }
 
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public int getItemId() {
+        return itemId;
+    }
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
 }

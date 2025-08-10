@@ -65,4 +65,29 @@ public class CustomerDAO {
 
         return customers;
     }
+    public Customer getCustomerById(int accountNumber) {
+        String sql = "SELECT * FROM customers WHERE account_number = ?";
+        Customer customer = null;
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, accountNumber);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    customer = new Customer();
+                    customer.setAccountNumber(rs.getInt("account_number"));
+                    customer.setName(rs.getString("name"));
+                    customer.setAddress(rs.getString("address"));
+                    customer.setTelephone(rs.getString("telephone"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return customer;
+    }
+
 }

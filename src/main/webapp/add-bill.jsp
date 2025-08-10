@@ -12,159 +12,73 @@
 <head>
     <title>Multi-Item Billing</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f3f6f9;
-            padding: 40px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-            margin-top: 15px;
-        }
-
-        select, input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-
-        .actions a {
-            text-decoration: none;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 6px;
-            transition: background-color 0.3s ease;
-            margin-right: 10px;
-        }
-
-        .actions a:hover {
-            background-color: #0056b3;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .btn-add {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            margin-top: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .btn-add:hover {
-            background-color: #218838;
-        }
-
-        .btn-remove {
-            background-color: #dc3545;
-            color: white;
-            padding: 5px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .btn-remove:hover {
-            background-color: #b52a37;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 14px;
-            margin-top: 30px;
-            background-color: #007bff;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
+        body { font-family: Arial, sans-serif; background-color: #f3f6f9; padding: 40px; }
+        .container { max-width: 900px; margin: auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+        h2 { text-align: center; color: #333; margin-bottom: 30px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; margin-top: 15px; }
+        select, input[type="number"] { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; }
+        .actions a { text-decoration: none; padding: 10px 15px; background-color: #007bff; color: white; border-radius: 6px; margin-right: 10px; }
+        .actions a:hover { background-color: #0056b3; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+        th { background-color: #007bff; color: white; }
+        .btn-add { background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; }
+        .btn-add:hover { background-color: #218838; }
+        .btn-remove { background-color: #dc3545; color: white; padding: 5px 12px; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-remove:hover { background-color: #b52a37; }
+        input[type="submit"] { width: 100%; padding: 14px; margin-top: 30px; background-color: #007bff; color: white; font-size: 16px; border: none; border-radius: 6px; cursor: pointer; }
+        input[type="submit"]:hover { background-color: #0056b3; }
+        .total-row td { font-weight: bold; background: #f8f9fa; }
     </style>
     <script>
-        let itemCounter = 0;
-
         function addItem() {
             const itemSelect = document.getElementById("item");
-            const quantity = document.getElementById("quantity").value;
+            const quantityInput = document.getElementById("quantities");
 
             const itemCode = itemSelect.value;
             const itemName = itemSelect.options[itemSelect.selectedIndex].text;
-            const qty = parseInt(quantity);
+            const itemPrice = parseFloat(itemSelect.options[itemSelect.selectedIndex].getAttribute("data-price"));
+            const qty = parseInt(quantityInput.value);
 
-            if (!itemCode || qty <= 0) {
+            if (!itemCode || isNaN(qty) || qty <= 0) {
                 alert("Please select a valid item and quantity.");
                 return;
             }
 
-            const table = document.getElementById("itemsTableBody");
-            const row = table.insertRow();
+            const subtotal = (itemPrice * qty).toFixed(2);
 
-            row.innerHTML = `
-                <td>${itemName}</td>
-                <td>${qty}</td>
-                <td>
-                    <input type="hidden" name="itemCodes" value="${itemCode}">
-                    <input type="hidden" name="quantities" value="${qty}">
-                    <button type="button" class="btn-remove" onclick="removeItem(this)">Remove</button>
-                </td>
-            `;
+            const templateRow = document.getElementById("itemRowTemplate").cloneNode(true);
+            templateRow.removeAttribute("id");
+            templateRow.style.display = "";
 
-            // Reset item selector
+            templateRow.querySelector(".itemName").textContent = itemName;
+            templateRow.querySelector(".itemQty").textContent = qty;
+            templateRow.querySelector(".itemPrice").textContent = itemPrice.toFixed(2);
+            templateRow.querySelector(".itemTotal").textContent = subtotal;
+
+            templateRow.querySelector(".itemIdInput").value = itemCode;
+            templateRow.querySelector(".itemQtyInput").value = qty;
+            templateRow.querySelector(".itemPriceInput").value = itemPrice.toFixed(2);
+
+            document.getElementById("itemsContainer").appendChild(templateRow);
+
+            updateTotal();
+
             itemSelect.selectedIndex = 0;
-            document.getElementById("quantity").value = "";
+            quantityInput.value = "";
         }
 
-        function removeItem(btn) {
-            const row = btn.closest("tr");
-            row.remove();
+        function removeRow(button) {
+            button.closest("tr").remove();
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll("#itemsContainer .itemTotal").forEach(cell => {
+                total += parseFloat(cell.textContent);
+            });
+            document.getElementById("grandTotal").textContent = total.toFixed(2);
         }
     </script>
 </head>
@@ -186,9 +100,7 @@
             <option value="">Select Customer</option>
             <% if (customers != null) {
                 for (Customer c : customers) { %>
-            <option value="<%= c.getAccountNumber() %>">
-                <%= c.getName() %> - <%= c.getTelephone() %>
-            </option>
+            <option value="<%= c.getAccountNumber() %>"><%= c.getName() %> - <%= c.getTelephone() %></option>
             <% } } %>
         </select>
 
@@ -197,26 +109,47 @@
             <option value="">-- Select Item --</option>
             <% if (items != null) {
                 for (Item i : items) { %>
-<%--            <option value="<%= i.getItemCode() %>"><%= i.getName() %> (Rs. <%= i.getPrice() %>)</option>--%>
+            <option value="<%= i.getItem_id() %>" data-price="<%= i.getUnit_price() %>">
+                <%= i.getItem_name() %> (Rs. <%= i.getUnit_price() %>)
+            </option>
             <% } } %>
         </select>
 
         <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" min="1">
+        <input type="number" id="quantities" min="1">
 
         <button type="button" class="btn-add" onclick="addItem()">+ Add Item to Bill</button>
 
         <table>
             <thead>
             <tr>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Remove</th>
+                <th>Item Name</th>
+                <th>Qty</th>
+                <th>Price (Rs.)</th>
+                <th>Subtotal (Rs.)</th>
+                <th>Action</th>
             </tr>
             </thead>
-            <tbody id="itemsTableBody">
-            <!-- Dynamically added rows -->
-            </tbody>
+            <tbody id="itemsContainer"></tbody>
+            <tfoot>
+            <tr id="itemRowTemplate" style="display:none">
+                <td class="itemName"></td>
+                <td class="itemQty"></td>
+                <td class="itemPrice"></td>
+                <td class="itemTotal"></td>
+                <td>
+                    <input type="hidden" class="itemIdInput" name="itemIds">
+                    <input type="hidden" class="itemQtyInput" name="quantities">
+                    <input type="hidden" class="itemPriceInput" name="prices">
+                    <button type="button" class="btn-remove" onclick="removeRow(this)">Remove</button>
+                </td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="3" style="text-align:right;">Grand Total (Rs.)</td>
+                <td id="grandTotal">0.00</td>
+                <td></td>
+            </tr>
+            </tfoot>
         </table>
 
         <input type="submit" value="Submit Bill">
