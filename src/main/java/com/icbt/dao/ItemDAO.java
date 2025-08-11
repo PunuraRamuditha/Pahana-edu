@@ -69,4 +69,19 @@ public class ItemDAO {
 
         return items;
     }
+
+    public boolean deleteItem(int itemId) {
+        String sql = "DELETE FROM items WHERE item_id = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, itemId);
+            return stmt.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
