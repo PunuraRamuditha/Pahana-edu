@@ -10,17 +10,20 @@ To validate that all new features merged from the dev branch function correctly,
 
 2. Test Coverage & Results
 
-| Module                    | Key Scenarios Tested                                   | Result      |
-|---------------------------|--------------------------------------------------------|-------------|
-| **Login**                 | Valid login, invalid credentials handling              | Pass / fail |
-| **Logout**                | Session cleared post-logout                            | Pass / fail |
-| **Customer Management**   | Create, update, delete, list; UI feedback verification | Pass / fail |
-| **Item Management**       | Full CRUD; category & price validation                 | Pass / fail |
-| **Billing – Creation**    | Generate multiple bills with mixed item types          | Pass / fail |
-| **Billing – Calculation** | Verify correct totals per bill                         | Pass / fail |
-| **Help Page**             | Content loads correctly for each module                | Pass / fail |
-| **Navigation**            | All dashboard and sidebar links functional             | Pass / fail |
-| **UI Theme**              | Dark theme applied consistently                        | Pass / fail |
+
+| Module                    | Key Scenarios Tested                                   | Result |
+|---------------------------|--------------------------------------------------------|--------|
+| **Login**                 | Valid login, invalid credentials handling              | Pass   |
+| **Logout**                | Session cleared post-logout                            | Pass   |
+| **Customer Management**   | Create, update, delete, list; UI feedback verification | Pass   |
+| **Item Management**       | Full CRUD; category & price validation                 | Pass   |
+| **Billing – Creation**    | Generate multiple bills with mixed item types          | Pass   |
+| **Billing – Calculation** | Verify correct totals per bill                         | Pass   |
+| **Help Page**             | Content loads correctly for each module                | Pass   |
+| **Navigation**            | All dashboard and sidebar links functional             | Pass   |
+| **UI Theme**              | Dark theme applied consistently                        | Pass   |
+
+
 
 - Automated Unit Testing (JUnit)
 
