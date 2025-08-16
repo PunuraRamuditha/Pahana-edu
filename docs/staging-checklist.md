@@ -11,7 +11,6 @@ To validate that all new features merged from the dev branch function correctly,
 2. Test Coverage & Results
 
 
-
 | Module                    | Key Scenarios Tested                                   | Result |
 |---------------------------|--------------------------------------------------------|--------|
 | **Login**                 | Valid login, invalid credentials handling              | Pass   |
