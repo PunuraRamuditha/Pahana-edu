@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import com.icbt.servlet.BillServlet;
 
 
 public class LoginServlet extends HttpServlet {
@@ -26,8 +27,7 @@ public class LoginServlet extends HttpServlet {
             if (user!=null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                RequestDispatcher rd = request.getRequestDispatcher("main-menu.jsp");
-                rd.forward(request, response);
+                response.sendRedirect("BillServlet?action=new");
             } else {
                 request.setAttribute("error", "Invalid username or password.");
                 RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
