@@ -13,7 +13,6 @@ To validate that all existing functionalities remain intact, the system operates
 2. Test Coverage & Results
 
 
-
 | Module                    | Key Scenarios Tested                                   | Result |
 |---------------------------|--------------------------------------------------------|--------|
 | **Login**                 | Valid login, invalid credentials handling              | Pass   |
@@ -25,7 +24,6 @@ To validate that all existing functionalities remain intact, the system operates
 | **Help Page**             | Content loads correctly for each module                | Pass   |
 | **Navigation**            | All dashboard and sidebar links functional             | Pass   |
 | **UI Theme**              | Dark theme applied consistently                        | Pass   |
-
 
 
 
