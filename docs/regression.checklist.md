@@ -25,6 +25,7 @@ To validate that all existing functionalities remain intact, the system operates
 | **UI Theme**              | Dark theme applied consistently                        | Pass   |
 
 
+
 3. Automated Unit Testing (JUnit)
 
 All unit tests executed successfully (mvn test) – Pass
