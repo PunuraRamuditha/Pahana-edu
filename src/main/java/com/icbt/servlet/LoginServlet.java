@@ -33,9 +33,6 @@ public class LoginServlet extends HttpServlet {
 
                 response.sendRedirect("BillServlet?action=new");
 
-                RequestDispatcher rd = request.getRequestDispatcher("main-menu.jsp");
-                rd.forward(request, response);
-
             } else {
                 request.setAttribute("error", "Invalid username or password.");
                 RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
