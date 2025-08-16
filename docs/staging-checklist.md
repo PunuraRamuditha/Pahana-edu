@@ -12,7 +12,6 @@ To validate that all new features merged from the dev branch function correctly,
 
 
 
-
 | Module                    | Key Scenarios Tested                                   | Result |
 |---------------------------|--------------------------------------------------------|--------|
 | **Login**                 | Valid login, invalid credentials handling              | Pass   |
@@ -24,7 +23,6 @@ To validate that all new features merged from the dev branch function correctly,
 | **Help Page**             | Content loads correctly for each module                | Pass   |
 | **Navigation**            | All dashboard and sidebar links functional             | Pass   |
 | **UI Theme**              | Dark theme applied consistently                        | Pass   |
-
 
 
 
