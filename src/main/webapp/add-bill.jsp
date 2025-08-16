@@ -92,9 +92,11 @@
         <a href="CustomerServlet">👁 View Customers</a>
         <a href="add-item.jsp">+ Add Item</a>
 
+
         <a href="ItemServlet">👁 View Items</a>
         <a href="BillServlet">👁 View Bills</a>
         <a href="main-menu.jsp">Main Menu</a>
+
 
     </div>
 
