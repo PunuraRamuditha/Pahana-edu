@@ -11,7 +11,7 @@ public class CustomerService {
     public boolean registerCustomer(Customer customer) {
         return customerDAO.addCustomer(customer);
     }
-
+    public boolean deleteCustomer(int accountNumber) {return customerDAO.deleteCustomer(accountNumber);}
     public boolean updateCustomer(Customer customer) {
         return customerDAO.updateCustomer(customer);
     }

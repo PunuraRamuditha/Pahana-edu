@@ -40,10 +40,10 @@
     <h2>Login</h2>
 
     <%
-        String error = request.getParameter("error");
+        String error = (String) request.getAttribute("error");
         if (error != null) {
     %>
-    <p class="error">Invalid username or password.</p>
+    <p class="error"><%= error %></p>
     <%
         }
     %>

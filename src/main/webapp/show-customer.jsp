@@ -89,7 +89,8 @@
         <td><%= c.getTelephone() %></td>
         <td class="actions">
             <a href="edit-customer.jsp?accountNumber=<%= c.getAccountNumber() %>&name=<%= c.getName() %>&address=<%= c.getAddress() %>&telephone=<%= c.getTelephone() %>">Edit</a>
-            <a href="delete-customer.jsp?accountNumber=<%= c.getAccountNumber() %>">Delete</a>
+            <a href="CustomerServlet?action=delete&accountNumber=<%= c.getAccountNumber() %>">Delete</a>
+
         </td>
     </tr>
     <%

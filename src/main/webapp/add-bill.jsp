@@ -85,7 +85,9 @@
 <body>
 
 <div class="container">
+    <a href="login.jsp">Logout</a>
     <h2>Create Bill</h2>
+
 
     <div class="actions">
         <a href="add-new-customer.jsp">+ Add Customer</a>
@@ -95,6 +97,7 @@
         <a href="ItemServlet">👁 View Items</a>
         <a href="BillServlet">👁 View Bills</a>
         <a href="main-menu.jsp">Main Menu</a>
+
 
     </div>
 
