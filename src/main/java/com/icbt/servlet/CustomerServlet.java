@@ -59,11 +59,26 @@ public class CustomerServlet extends HttpServlet {
         }
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Customer> customerList = customerService.getAllCustomers();
-        request.setAttribute("customers", customerList);
-        request.getRequestDispatcher("show-customer.jsp").forward(request, response);
+        String action = request.getParameter("action");
+
+        if ("delete".equals(action)) {
+            // ✅ Handle DELETE
+            try {
+                int accountNumber = Integer.parseInt(request.getParameter("accountNumber"));
+                customerService.deleteCustomer(accountNumber);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            response.sendRedirect("CustomerServlet"); // reload list after delete
+        } else {
+            // ✅ Default: LIST customers
+            List<Customer> customerList = customerService.getAllCustomers();
+            request.setAttribute("customers", customerList);
+            request.getRequestDispatcher("show-customer.jsp").forward(request, response);
+        }
     }
 }
