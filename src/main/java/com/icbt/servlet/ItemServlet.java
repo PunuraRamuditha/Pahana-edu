@@ -57,11 +57,26 @@ public class ItemServlet extends HttpServlet  {
         }
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Item> itemList = itemService.getAllItems();
-        request.setAttribute("items", itemList);
-        request.getRequestDispatcher("manage-items.jsp").forward(request, response);
+        String action = request.getParameter("action");
+
+        if ("delete".equals(action)) {
+            // ✅ Handle DELETE
+            try {
+                int item_id = Integer.parseInt(request.getParameter("item_id"));
+                itemService.deleteItem(item_id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            response.sendRedirect("ItemServlet"); // reload list
+        } else {
+            // ✅ Default: LIST items
+            List<Item> itemList = itemService.getAllItems();
+            request.setAttribute("items", itemList);
+            request.getRequestDispatcher("manage-items.jsp").forward(request, response);
+        }
     }
 }
