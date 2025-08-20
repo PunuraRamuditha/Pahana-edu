@@ -20,6 +20,12 @@ import com.icbt.servlet.BillServlet;
 
 
 
+import com.icbt.servlet.BillServlet;
+
+
+
+
+
 public class LoginServlet extends HttpServlet {
     private UserService userService;
 
@@ -36,6 +42,7 @@ public class LoginServlet extends HttpServlet {
             if (user!=null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
+
 
                 response.sendRedirect("BillServlet?action=new");
 
