@@ -18,6 +18,9 @@ public class ItemService {
         return itemDAO.updateItem(item);
     }
 
+    public boolean deleteItem(int item_id) {return itemDAO.deleteItem(item_id);
+    }
+
 
     public List<Item> getAllItems() {
         return itemDAO.getAllItems();
