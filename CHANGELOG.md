@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+
 ## [1.1.0] - 2025-08-16
 
 ### Second release
