@@ -65,6 +65,22 @@ public class CustomerDAO {
 
         return customers;
     }
+
+    public boolean deleteCustomer(int accountNumber) {
+        String sql = "DELETE FROM customers WHERE account_number = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, accountNumber);
+
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
     public Customer getCustomerById(int accountNumber) {
         String sql = "SELECT * FROM customers WHERE account_number = ?";
         Customer customer = null;

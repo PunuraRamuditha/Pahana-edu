@@ -69,7 +69,7 @@ public class BillItemDAO {
 
     // Delete bill item
     public boolean deleteBillItem(int billItemId) {
-        String sql = "DELETE FROM bill_items WHERE id = ?";
+        String sql = "DELETE FROM bill_items WHERE bill_item_id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -92,7 +92,7 @@ public class BillItemDAO {
 
             while (rs.next()) {
                 BillItem item = new BillItem();
-                item.setBillId(rs.getInt("id"));
+                item.setBillId(rs.getInt("bill_item_id"));
                 item.setBillId(rs.getInt("bill_id"));
                 item.setItemId(rs.getInt("item_id"));
                 item.setQuantity(rs.getInt("quantity"));

@@ -108,10 +108,11 @@
         <td class="actions">
             <a class="btn" href="edit-item.jsp?item_id=<%= item.getItem_id() %>&item_name=<%= item.getItem_name() %>&item_description=<%= item.getItem_description() %>&unit_price=<%= item.getUnit_price() %>&stock_quantity=<%= item.getStock_quantity() %>">Edit</a>
 
-            <form action="DeleteItemServlet" method="post"
+            <form action="ItemServlet" method="get"
                   style="display:inline;"
                   onsubmit="return confirm('Are you sure you want to delete this item?');">
-                <input type="hidden" name="itemId" value="<%= item.getItem_id() %>">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="item_id" value="<%= item.getItem_id() %>">
                 <button class="btn btn-danger" type="submit">Delete</button>
             </form>
         </td>
